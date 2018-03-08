@@ -1,10 +1,6 @@
 version: '3.0'
 
 services:
-  postgres:
-    image: postgres:9.4
-    ports:
-      - "5432"
   rails: &backend_base
     build: ./customer_feedback_microservice
     environment:
@@ -19,5 +15,3 @@ services:
       - ./customer_feedback_microservice:/usr/src
     tty: true
     stdin_open: true
-    links:
-        - postgres

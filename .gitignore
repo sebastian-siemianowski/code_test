@@ -1,4 +1,5 @@
 /.bundle
+.idea/
 /log/*
 /tmp/*
 /vendor/*
@@ -14,4 +15,3 @@ db/*.sql
 puma_staging.rb
 public/assets
 **/Thumbs.db
-.idea/
