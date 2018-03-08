@@ -1,0 +1,23 @@
+version: '3.0'
+
+services:
+  postgres:
+    image: postgres:9.4
+    ports:
+      - "5432"
+  rails: &backend_base
+    build: ./customer_feedback_microservice
+    environment:
+      LEAD_API_PGUID: "CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB"
+      LEAD_API_PACCNAME: "MicDevtest"
+      LEAD_API_PPARTNER: "MicDevtest"
+      LEAD_API_ACCESS_TOKEN: "provide_by_maket_it_cheaper"
+      LEAD_API_URI: "http://mic-leads.dev-test.makeiteasy.com"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./customer_feedback_microservice:/usr/src
+    tty: true
+    stdin_open: true
+    links:
+        - postgres
