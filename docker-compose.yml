@@ -9,6 +9,7 @@ services:
       LEAD_API_PPARTNER: "MicDevtest"
       LEAD_API_ACCESS_TOKEN: "provide_by_maket_it_cheaper"
       LEAD_API_URI: "http://mic-leads.dev-test.makeiteasy.com"
+      SECRET_KEY_BASE: "0f3cfe7e7f496f4136d5ee09c44e61146e6e0120efcf1d69c5c97340976ed4c2d8889014c8b5c26235b98f758d2dd59484b56b1ff49a96f2022f55b9a0a714ae"
     ports:
       - "3000:3000"
     volumes:
