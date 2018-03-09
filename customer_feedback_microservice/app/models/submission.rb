@@ -34,9 +34,11 @@ class Submission
   def save
     if valid?
       url = "#{ENV['LEAD_API_URI']}/api/v1/create"
+      puts self.to_json
+
       result = HTTParty.post(url,
-                             :body => self.to_json,
-                             :headers => { 'Content-Type' => 'application/json' } ).parsed_response
+                             :body => body.to_query,
+                             :headers => {"Content-Type" => "application/x-www-form-urlencoded"}).parsed_response
       puts result
       @message = result['message']
       return false if @remote_errors = result['errors']
@@ -55,5 +57,21 @@ class Submission
 
   def persisted?
     false
+  end
+
+  private
+
+  def body
+    {name: name,
+     business_name: business_name,
+     telephone_number: telephone_number,
+     email: email,
+     contact_time: contact_time,
+     notes: notes,
+     reference: reference,
+     access_token: access_token,
+     pGUID: pGUID,
+     pAccName: pAccName,
+     pPartner: pPartner}
   end
 end
