@@ -13,8 +13,8 @@ RSpec.describe 'Submission Form', type: :request do
     end
   end
 
-  it 'it shows error if name is not present' do
-    VCR.use_cassette 'correct_submission' do
+  it 'it shows error if business name is not present' do
+    VCR.use_cassette 'business_name_not_present' do
       post '/submissions', params: { submission: { name: 'John Doe', telephone_number: '07517419898' } }
 
       expect(response).to redirect_to(submissions_path)
@@ -24,7 +24,7 @@ RSpec.describe 'Submission Form', type: :request do
   end
 
   it 'it shows error if name is not present' do
-    VCR.use_cassette 'correct_submission' do
+    VCR.use_cassette 'name not present' do
       post '/submissions', params: { submission: { business_name: 'foo', telephone_number: '07517419898' } }
 
       expect(response).to redirect_to(submissions_path)
@@ -34,7 +34,7 @@ RSpec.describe 'Submission Form', type: :request do
   end
 
   it 'it shows error if telephone is not present' do
-    VCR.use_cassette 'correct_submission' do
+    VCR.use_cassette 'telephone not present' do
       post '/submissions', params: { submission: { business_name: 'foo', name: 'John Doe' } }
 
       expect(response).to redirect_to(submissions_path)

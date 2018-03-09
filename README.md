@@ -26,3 +26,10 @@ Check .env.example
 - LEAD_API_PACCNAME="MicDevtest"
 - LEAD_API_PPARTNER="MicDevtest"
 - LEAD_API_ACCESS_TOKEN=provide_by_maket_it_cheaper
+
+Added changes:
+1. The project can now run through docker
+2. Added support for feature test through docker (though no feature tests were completed yet) - rake docker:test:cucumber
+3. To start the project simply go to the project directory and execute docker-compose up
+4. Request Test were added
+5. Unit tests were added 
