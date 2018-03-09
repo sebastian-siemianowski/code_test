@@ -36,23 +36,19 @@ class Submission
   end
 
   def save
-    if valid?
-      url = "#{ENV['LEAD_API_URI']}/api/v1/create"
+    return false unless valid?
+    url = "#{ENV['LEAD_API_URI']}/api/v1/create"
+    headers = { 'Content-Type' => 'application/x-www-form-urlencoded' }
 
-      result = HTTParty.post(url, body: body.to_query, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' }).parsed_response
+    result = HTTParty.post(url, body: body, headers: headers).parsed_response
 
-      @message = result['message']
-      if !result['errors'].empty?
-        result['errors'].each do |error|
-          errors.add(:base, error)
-        end
-        false
-      else
-        true
-      end
-    else
-      false
+    @message = result['message']
+    return true if result['errors'].empty?
+    result['errors'].each do |error|
+      errors.add(:base, error)
     end
+
+    false
   end
 
   def persisted?
@@ -72,6 +68,6 @@ class Submission
       access_token: access_token,
       pGUID: pGUID,
       pAccName: pAccName,
-      pPartner: pPartner }
+      pPartner: pPartner }.to_query
   end
 end
