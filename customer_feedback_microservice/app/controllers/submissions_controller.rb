@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new
     @submission.update_params(submission_params)
     if @submission.save
-      render plain: @submission.message
+      redirect_to submissions_path , :flash => { :info =>  "You're query had been sent and will be dealt with soon" }
     else
       redirect_to submissions_path , :flash => { :error =>  @submission.errors.full_messages }
     end

@@ -22,12 +22,19 @@
     <div class="alert alert-<%= key %>">
       <a href="#" data-dismiss="alert" class="close">×</a>
       </br>
+      <% if value.is_a? String %>
+        <li>
+          <%= value %>
+        </li>
+        <% else %>
         <% value.each do |value_item| %>
           <li>
             <%= value_item %>
           </li>
-          </br>
-          <% end %>
+          <br>
+        <% end %>
+        <% end %>
+
       </ul>
     </div>
   <% end %>
