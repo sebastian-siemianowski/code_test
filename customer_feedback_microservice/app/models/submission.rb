@@ -12,7 +12,9 @@ class Submission
   attr_reader :access_token,
               :pGUID,
               :pAccName,
-              :pPartner
+              :pPartner,
+              :message,
+              :remote_errors
 
   validates :name, :business_name, :telephone_number, :presence => true
   validates_length_of :name, :maximum => 100, :allow_blank => false
@@ -27,5 +29,25 @@ class Submission
     @pGUID = ENV['LEAD_API_PGUID']
     @pAccName = ENV['LEAD_API_PACCNAME']
     @pPartner = ENV['LEAD_API_PPARTNER']
-   end
+  end
+
+  def save
+    url = "#{ENV['LEAD_API_URI']}/api/v1/create"
+    result = HTTParty.post(url,
+                            :body => self.to_json,
+                            :headers => { 'Content-Type' => 'application/json' } ).parsed_response
+    # puts result
+    @message = result[:message]
+    @remote_errors = result[:errors]
+  end
+
+  def update_params(params = {})
+    params.each do |key, value|
+      instance_variable_set("@#{key}", value)
+    end
+  end
+
+  def persisted?
+    false
+  end
 end
