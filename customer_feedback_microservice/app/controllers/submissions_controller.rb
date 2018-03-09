@@ -5,7 +5,7 @@ class SubmissionsController < ApplicationController
     if @submission.save
       render plain: @submission.message
     else
-      flash[:error] = @submission.errors.full_messages
+      redirect_to submissions_path , :flash => { :error =>  @submission.errors.full_messages }
     end
 
   end
