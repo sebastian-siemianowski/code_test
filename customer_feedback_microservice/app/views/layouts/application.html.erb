@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%= csrf_meta_tags %>
+<head>
+  <%= csrf_meta_tags %>
 
-    <link rel="stylesheet" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" media="all" href="<%= asset_path "application", type: :stylesheet %>" />
-    <script src="<%= asset_path "application", type: :javascript %>"></script>
+  <link rel="stylesheet" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" media="all" href="<%= asset_path "application", type: :stylesheet %>"/>
+  <script src="<%= asset_path "application", type: :javascript %>"></script>
 
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700,800' rel='stylesheet' type='text/css'>
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
-  </head>
+</head>
 
-  <body>
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>">
-      <a href="#" data-dismiss="alert" class="close">×</a>
-      </br>
-      <% if value.is_a? String %>
+<body>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <a href="#" data-dismiss="alert" class="close">×</a>
+    </br>
+    <% if value.is_a? String %>
+      <li>
+        <%= value %>
+      </li>
+    <% else %>
+      <% value.each do |value_item| %>
         <li>
-          <%= value %>
+          <%= value_item %>
         </li>
-        <% else %>
-        <% value.each do |value_item| %>
-          <li>
-            <%= value_item %>
-          </li>
-          <br>
-        <% end %>
-        <% end %>
+        <br>
+      <% end %>
+    <% end %>
 
-      </ul>
-    </div>
-  <% end %>
+    </ul>
+  </div>
+<% end %>
 
-    <%= yield %>
+<%= yield %>
 
-  </body>
+</body>
 </html>
