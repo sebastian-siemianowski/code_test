@@ -5,10 +5,10 @@ require 'rails_helper'
 describe Submission do
   subject { described_class.new }
 
-  let(:access_token){'provide_by_maket_it_cheaper'}
-  let(:pGUID){'CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB'}
-  let(:pAccName){'MicDevtest'}
-  let(:pPartner){'MicDevtest'}
+  let(:access_token) { 'provide_by_maket_it_cheaper' }
+  let(:pGUID) { 'CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB' }
+  let(:pAccName) { 'MicDevtest' }
+  let(:pPartner) { 'MicDevtest' }
 
   it 'returns correct access token' do
     expect(subject.access_token).to eq access_token
@@ -39,14 +39,14 @@ describe Submission do
   end
 
   describe '#email' do
-    it { should validate_length_of(:email).is_at_most(80)}
+    it { should validate_length_of(:email).is_at_most(80) }
   end
 
   describe '#notes' do
-    it { should validate_length_of(:notes).is_at_most(255)}
+    it { should validate_length_of(:notes).is_at_most(255) }
   end
 
   describe '#reference' do
-    it { should validate_length_of(:reference).is_at_most(50)}
+    it { should validate_length_of(:reference).is_at_most(50) }
   end
 end

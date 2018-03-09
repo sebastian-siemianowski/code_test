@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Submission
   include ActiveModel::Model
 
@@ -15,13 +17,13 @@ class Submission
               :pPartner,
               :message
 
-  validates :name, :business_name, :telephone_number, :presence => true
-  validates_length_of :name, :maximum => 100, :allow_blank => false
-  validates_length_of :business_name, :maximum => 100, :allow_blank => false
-  validates_length_of :telephone_number, :maximum => 13, :allow_blank => false
-  validates_length_of :email, :maximum => 80, :allow_blank => true
-  validates_length_of :notes, :maximum => 255, :allow_blank => true
-  validates_length_of :reference, :maximum => 50, :allow_blank => true
+  validates :name, :business_name, :telephone_number, presence: true
+  validates_length_of :name, maximum: 100, allow_blank: false
+  validates_length_of :business_name, maximum: 100, allow_blank: false
+  validates_length_of :telephone_number, maximum: 13, allow_blank: false
+  validates_length_of :email, maximum: 80, allow_blank: true
+  validates_length_of :notes, maximum: 255, allow_blank: true
+  validates_length_of :reference, maximum: 50, allow_blank: true
 
   def initialize
     @access_token = ENV['LEAD_API_ACCESS_TOKEN']
@@ -34,12 +36,12 @@ class Submission
     if valid?
       url = "#{ENV['LEAD_API_URI']}/api/v1/create"
 
-      result = HTTParty.post(url, :body => body.to_query, :headers => {"Content-Type" => "application/x-www-form-urlencoded"}).parsed_response
+      result = HTTParty.post(url, body: body.to_query, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' }).parsed_response
 
       @message = result['message']
       if !result['errors'].empty?
         result['errors'].each do |error|
-          self.errors.add(:base, error)
+          errors.add(:base, error)
         end
         false
       else
@@ -48,7 +50,6 @@ class Submission
     else
       false
     end
-
   end
 
   def update_params(params = {})
@@ -64,16 +65,16 @@ class Submission
   private
 
   def body
-    {name: name,
-     business_name: business_name,
-     telephone_number: telephone_number,
-     email: email,
-     contact_time: contact_time,
-     notes: notes,
-     reference: reference,
-     access_token: access_token,
-     pGUID: pGUID,
-     pAccName: pAccName,
-     pPartner: pPartner}
+    { name: name,
+      business_name: business_name,
+      telephone_number: telephone_number,
+      email: email,
+      contact_time: contact_time,
+      notes: notes,
+      reference: reference,
+      access_token: access_token,
+      pGUID: pGUID,
+      pAccName: pAccName,
+      pPartner: pPartner }
   end
 end
