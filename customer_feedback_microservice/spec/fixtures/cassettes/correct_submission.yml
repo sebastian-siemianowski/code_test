@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://mic-leads.dev-test.makeiteasy.com/api/v1/create
+    body:
+      encoding: UTF-8
+      string: access_token=5e7897a9f198c374e394e39ad6c5852b&business_name=foo&contact_time=&email=&name=John+Doe&notes=&pAccName=MicDevtest&pGUID=CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB&pPartner=MicDevtest&reference=&telephone_number=07517419898
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 201 Created
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Etag:
+      - W/"a3647de73f830d5cb5c63d7ccddd62ec"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Runtime:
+      - '0.018337'
+      X-Request-Id:
+      - 4d31b5f7-f029-49c4-acb8-1788b6d60c67
+      Date:
+      - Fri, 09 Mar 2018 04:15:10 GMT
+      X-Powered-By:
+      - Phusion Passenger 5.1.12
+      - cloud66
+      Server:
+      - nginx + Phusion Passenger 5.1.12
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"message":"Enqueue success","errors":[]}'
+    http_version: 
+  recorded_at: Fri, 09 Mar 2018 04:15:10 GMT
+recorded_with: VCR 4.0.0
