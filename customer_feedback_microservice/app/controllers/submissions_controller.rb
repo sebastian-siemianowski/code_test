@@ -4,6 +4,6 @@ class SubmissionsController < ApplicationController
   end
 
   def index
-
+    @submission = Submission.new
   end
 end

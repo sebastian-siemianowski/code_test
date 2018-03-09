@@ -25,7 +25,7 @@ describe Submission do
   it 'returns correct pPartner' do
     expect(subject.pPartner).to eq pPartner
   end
-  
+
   describe '#name' do
     it { is_expected.to validate_presence_of(:name) }
   end
