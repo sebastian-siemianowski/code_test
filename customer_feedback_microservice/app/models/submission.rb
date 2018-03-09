@@ -13,8 +13,7 @@ class Submission
               :pGUID,
               :pAccName,
               :pPartner,
-              :message,
-              :remote_errors
+              :message
 
   validates :name, :business_name, :telephone_number, :presence => true
   validates_length_of :name, :maximum => 100, :allow_blank => false
@@ -34,12 +33,9 @@ class Submission
   def save
     if valid?
       url = "#{ENV['LEAD_API_URI']}/api/v1/create"
-      puts self.to_json
 
-      result = HTTParty.post(url,
-                             :body => body.to_query,
-                             :headers => {"Content-Type" => "application/x-www-form-urlencoded"}).parsed_response
-      puts result
+      result = HTTParty.post(url, :body => body.to_query, :headers => {"Content-Type" => "application/x-www-form-urlencoded"}).parsed_response
+
       @message = result['message']
       if !result['errors'].empty?
         result['errors'].each do |error|
