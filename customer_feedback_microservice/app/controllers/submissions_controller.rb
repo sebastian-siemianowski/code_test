@@ -2,8 +2,12 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new
     @submission.update_params(submission_params)
-    @submission.save
-    render plain: @submission.message
+    if @submission.save
+      render plain: @submission.message
+    else
+      flash[:error] = @submission.errors.full_messages
+    end
+
   end
 
   def index

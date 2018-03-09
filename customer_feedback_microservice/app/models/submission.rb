@@ -41,8 +41,14 @@ class Submission
                              :headers => {"Content-Type" => "application/x-www-form-urlencoded"}).parsed_response
       puts result
       @message = result['message']
-      return false if @remote_errors = result['errors']
-      true
+      if result['errors']
+        result['errors'].each do |error|
+          self.errors.add(:base, error)
+        end
+        false
+      else
+        true
+      end
     else
       false
     end
