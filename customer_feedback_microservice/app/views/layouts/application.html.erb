@@ -21,10 +21,13 @@
   <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>">
       <a href="#" data-dismiss="alert" class="close">×</a>
-      <ul>
-        <li>
-          <%= value %>
-        </li>
+      </br>
+        <% value.each do |value_item| %>
+          <li>
+            <%= value_item %>
+          </li>
+          </br>
+          <% end %>
       </ul>
     </div>
   <% end %>
