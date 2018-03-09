@@ -32,13 +32,19 @@ class Submission
   end
 
   def save
-    url = "#{ENV['LEAD_API_URI']}/api/v1/create"
-    result = HTTParty.post(url,
-                            :body => self.to_json,
-                            :headers => { 'Content-Type' => 'application/json' } ).parsed_response
-    # puts result
-    @message = result[:message]
-    @remote_errors = result[:errors]
+    if valid?
+      url = "#{ENV['LEAD_API_URI']}/api/v1/create"
+      result = HTTParty.post(url,
+                             :body => self.to_json,
+                             :headers => { 'Content-Type' => 'application/json' } ).parsed_response
+      puts result
+      @message = result['message']
+      return false if @remote_errors = result['errors']
+      true
+    else
+      false
+    end
+
   end
 
   def update_params(params = {})

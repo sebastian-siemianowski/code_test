@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new
     @submission.update_params(submission_params)
     @submission.save
-    render @submission.message
+    render plain: @submission.message
   end
 
   def index
