@@ -2,8 +2,7 @@
 
 class SubmissionsController < ApplicationController
   def create
-    @submission = Submission.new
-    @submission.update_params(submission_params)
+    @submission = Submission.new(submission_params)
     if @submission.save
       redirect_to submissions_path, flash: { info: "You're query had been sent and will be dealt with soon" }
     else

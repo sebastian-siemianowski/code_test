@@ -25,7 +25,10 @@ class Submission
   validates_length_of :notes, maximum: 255, allow_blank: true
   validates_length_of :reference, maximum: 50, allow_blank: true
 
-  def initialize
+  def initialize(params = {})
+    params.each do |key, value|
+      instance_variable_set("@#{key}", value)
+    end
     @access_token = ENV['LEAD_API_ACCESS_TOKEN']
     @pGUID = ENV['LEAD_API_PGUID']
     @pAccName = ENV['LEAD_API_PACCNAME']
@@ -49,12 +52,6 @@ class Submission
       end
     else
       false
-    end
-  end
-
-  def update_params(params = {})
-    params.each do |key, value|
-      instance_variable_set("@#{key}", value)
     end
   end
 
